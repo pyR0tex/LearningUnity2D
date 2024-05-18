@@ -9,11 +9,12 @@ public class Driver : MonoBehaviour
     // Global Class Variables
     [SerializeField] float steerSpeedScale = 360f;
     [SerializeField] float moveSpeedScale = 30f;
-
+    [SerializeField] float slowSpeed = 20f;
+    [SerializeField] float boostSpeed = 60f;
     // Start is called before the first frame update
     void Start()
     {   
-        transform.Translate(0,0,0);
+        Debug.Log("Driver Start");
     }
     
 
@@ -32,4 +33,20 @@ public class Driver : MonoBehaviour
         transform.Translate(0, moveAmount, 0);
     }
 
+    void OnTriggerEnter2D(Collider2D other) {
+        // Boost and Bump speed adjustments
+        if (other.tag == "Boost"){
+            // Speeds driver up
+            Debug.Log("Booost!");
+            moveSpeedScale = boostSpeed;
+        }
+        if(other.tag == "Obstacle"){
+            // Slows Driver Down
+            Debug.Log("This message should not print");
+        }
+    }
+    void OnCollisionEnter2D(Collision2D other) {
+        // Boost and Bump Adjustments
+        moveSpeedScale = slowSpeed;
+    }
 }
