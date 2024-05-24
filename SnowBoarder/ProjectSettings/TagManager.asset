@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Head_Death
+  - BloodEffect
+  - FinishLineEffect
+  - DustTrail
+  - FinishLine
   layers:
   - Default
   - TransparentFX
