@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float baseSpeed = 20f;
     [SerializeField] float BoostSpeed = 40f;
     [SerializeField] float SlowSpeed = 6f;
+    bool disableMovement = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +27,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        PlayerMovement();
+        if(!disableMovement){
+            PlayerMovement();
+        }
+        else{
+            disableControls();
+        }
+        
     }
 
+    public void disableControls(){
+        disableMovement = true;
+    }
     void PlayerMovement(){
         if(Input.GetKey(KeyCode.LeftArrow)){
             rb2d.AddTorque(torqueAmount);
